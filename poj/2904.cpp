@@ -15,29 +15,36 @@ typedef long long ll;
 #define all(c) (c).begin(), (c).end()
 #define zclear(v) memset(v, 0, sizeof(v))
 
-int m;
-int solve(int safe, int fail, int k) {
-  if (k == 1) {
-    return max(fail*(fail-1)/2, (m*(m+1)-safe*(safe+1))/2);
+int dp[11][101][102];
+void solve(void) {
+  for (int l = 0; l < 101; l++) {
+    for (int u = l+2; u < 102; u++) {
+      dp[1][l][u] = (u*u - u - l*l - l)/2;
+    }
   }
 
-  int mi = INT_MAX;
-  for (int i = safe; i < fail; i++) {
-    mi = min(mi, solve(safe, i,  k-1));
+  for (int k = 2; k <= 10; k++) {
+    for (int l = 100; l >= 0; l--) {
+      for (int u = 101; u >= l+1; u--) {
+        int mi = dp[k-1][l][u];
+        for (int i = l+1; i < u; i++) {
+          mi = min(mi, i+max(dp[k][i][u], dp[k-1][l][i]));
+        }
+        dp[k][l][u] = mi;
+      }
+    }
   }
-  for (int i = fail;  safe < i; i--) {
-    mi = min(mi, solve(i, fail,  k-1));
-  }
-  return mi;
 }
 
 int main(void) {
+  solve();
+
   int n;
   scanf("%d", &n);
   rep (_i, n) {
-    int k;
+    int k, m;
     scanf("%d%d", &k, &m);
-    printf("%d\n", solve(0, m+1, k));
+    printf("%d\n", dp[k][0][m+1]);
   }
   return 0;
 }
