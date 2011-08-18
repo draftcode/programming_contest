@@ -349,13 +349,19 @@ class CodeForces(OnlineJudge):
         self.contest_id = args[0]
         
     def get_input_file_name(self, index):
-        return self.contest_id + self.problem_id + '.' + str(index) + '.in.txt'
+        return 'codeforces/t/' + self.contest_id + self.problem_id + '.' + str(index) + '.in.txt'
     
     def get_output_file_name(self, index):
-        return self.contest_id + self.problem_id + '.' + str(index) + '.out.txt'
+        return 'codeforces/t/' + self.contest_id + self.problem_id + '.' + str(index) + '.out.txt'
     
     def get_url(self):
         return 'http://codeforces.com/contest/' + self.contest_id + '/problem/' + self.problem_id
+
+    def get_source_file_name(self):
+        if self.options.source_file_name:
+            return self.options.source_file_name
+        else:
+            return 'codeforces/' + self.contest_id + '/' + self.problem_id + '.cpp'
 
     def download(self):
         html = self.download_html()

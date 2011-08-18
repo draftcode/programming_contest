@@ -3,5 +3,8 @@
     "browser": "open"},
  "aoj" :
     {"user_id": "draftcode",
+    "browser": "open"},
+ "codeforces" :
+    {"user_id": "draftcode",
     "browser": "open"}}
 
