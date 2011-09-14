@@ -593,7 +593,7 @@ def main():
     else:
         online_judge.check()
 # }}}
-    
+
 if __name__ == '__main__':
     main()
 
