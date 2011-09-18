@@ -1,23 +1,23 @@
 #include <algorithm>
+#include <functional>
 #include <iostream>
+#include <limits>
+#include <numeric>
 #include <queue>
 #include <vector>
-#include <numeric>
+
 #include <cstring>
 #include <cstdio>
 #include <cmath>
-#include <climits>
 using namespace std;
 typedef long long ll;
 
 #define rep(i,n) for(int i = 0; i < n; i++)
 #define each(it,c) for(__typeof((c).begin()) it = (c).begin(); it != (c).end(); ++it)
-#define all(c) (c).begin(), (c).end()
-#define zclear(v) memset(v, 0, sizeof(v))
 
 int N, M;
 vector<double> v[100];
-// diff[i][j] ... j's production to i
+// diff_len[i][j] ... j's production to i
 double diff_len[100][100];
 
 struct P {
@@ -37,16 +37,15 @@ void calc_diff(void) {
         double inp = inner_product(v[i].begin(), v[i].end(), v[j].begin(), 0.0);
         double sqr_len_i = diff_len[i][i];
         double sqr_len_j = diff_len[j][j];
-        double inner_r = (sqr_len_i*sqr_len_j - inp*inp)/(sqr_len_i*sqr_len_j);
-        
-        double len = inner_r * sqr_len_j;
-        diff_len[i][j] = len;
+        diff_len[i][j] = (sqr_len_i*sqr_len_j - inp*inp)/sqr_len_i;
       }
     }
   }
 }
 
 int main(void) {
+  ios::sync_with_stdio(false);
+
   cin >> N >> M;
   rep (i, M) {
     double len = 0.0;
@@ -64,18 +63,18 @@ int main(void) {
   rep (base, M) {
     int used_count = 1;
     vector<bool> used(M, false);
+    used[base] = true;
     
     priority_queue<P> que;
     rep (j, M) {
       if (j != base) {
         que.push((P){diff_len[j][j], j, j});
+        que.push((P){diff_len[base][j], base, j});
       }
-      que.push((P){diff_len[base][j], base, j});
     }
     
     double sum_len = diff_len[base][base];
-    used[base] = true;
-    while (!que.empty() && used_count != M) {
+    while (used_count != M) {
       P p = que.top(); que.pop();
       if (used[p.j]) continue;
       used[p.j] = true;
