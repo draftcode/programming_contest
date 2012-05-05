@@ -16,5 +16,15 @@ typedef long long ll;
 #define zclear(v) memset(v, 0, sizeof(v))
 
 int main(void) {
+  ll n, m, a;
+  cin >> n >> m >> a;
+
+  ll nreq, mreq;
+  nreq = n/a;
+  if (n%a != 0) nreq++;
+  mreq = m/a;
+  if (m%a != 0) mreq++;
+
+  cout << nreq * mreq << endl;
   return 0;
 }

@@ -60,35 +60,6 @@ int main(void) {
   calc_diff();
 
   double ans = 1e10;
-  rep (base, M) {
-    int used_count = 1;
-    vector<bool> used(M, false);
-    used[base] = true;
-    
-    priority_queue<P> que;
-    rep (j, M) {
-      if (j != base) {
-        que.push((P){diff_len[j][j], j, j});
-        que.push((P){diff_len[base][j], base, j});
-      }
-    }
-    
-    double sum_len = diff_len[base][base];
-    while (used_count != M) {
-      P p = que.top(); que.pop();
-      if (used[p.j]) continue;
-      used[p.j] = true;
-      sum_len += diff_len[p.i][p.j];
-      used_count++;
-      
-      rep (j, M) {
-        if (!used[j]) {
-          que.push((P){diff_len[p.j][j], p.j, j});
-        }
-      }
-    }
-    ans = min(ans, sum_len);
-  }
 
   printf("%.8f\n", ans);
   return 0;
