@@ -1,0 +1,14 @@
+4
+64
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+-9223372036854775808
+64
+pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+9223372036854775807
+3
+pnp
+6
+4
+ppnn
+10
+

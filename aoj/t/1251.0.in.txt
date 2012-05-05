@@ -1,0 +1,34 @@
+5 6
+/home/ACM/index.html
+/ICPC/index.html
+/ICPC/general.html
+/ICPC/japanese/index.html
+/ICPC/secret/confidential/2005/index.html
+/home/ACM/
+/home/ICPC/../ACM/
+/ICPC/secret/
+/ICPC/secret/index.html
+/ICPC
+/ICPC/../ICPC/index.html
+/ICPC
+/ICPC/general.html
+/ICPC/japanese/.././
+/ICPC/japanese/./../
+/home/ACM/index.html
+/home/ACM/index.html/
+1 4
+/index.html/index.html
+/
+/index.html/index.html
+/index.html
+/index.html/index.html
+/..
+/index.html/../..
+/index.html/
+/index.html/index.html/..
+2 1
+/foo/index.html
+/foo/bar/baz.html
+/foo/bar/..
+/foo/.
+0 0
