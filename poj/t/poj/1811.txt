@@ -1,0 +1,11 @@
+### INPUT
+4
+5
+10
+121
+997
+### OUTPUT
+Prime
+2
+11
+Prime
